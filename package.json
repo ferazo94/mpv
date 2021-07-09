@@ -30,6 +30,7 @@
   },
   "dependencies": {
     "@material-ui/core": "^4.12.1",
+    "@material-ui/lab": "*",
     "axios": "^0.21.1",
     "express": "^4.17.1",
     "mongoose": "^5.13.2",

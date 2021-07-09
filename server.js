@@ -10,32 +10,32 @@ const app = express();
 app.use(express.static(path.join(__dirname, './client/dist')));
 app.use(express.json());
 
-app.get('/apiCards', (req, res) => {
+app.get('/apiCards/:name', (req, res) => {
   axios.get(url, {
     params: {
-      name: req.body.name
+      name: req.params.name
     }
   }).then(data => {
     res.send(data.data.cards);
   }).catch(err => {
     res.end(err);
-  })
+  });
 });
 
 app.post('/addCard', (req, res) => {
   db.addCard(req.body.card, (err, data) => {
     if(err) {
-      res.end(err)
+      res.status(409).end();
     } else {
       res.sendStatus(201);
     }
-  })
+  });
 });
 
 app.delete('/deleteCard', (req, res) => {
   db.deleteCard(req.body.multiverseid, (err, data) => {
     if (err) {
-      res.end(err);
+      res.status(400).end();
     } else {
       res.send(204);
     }

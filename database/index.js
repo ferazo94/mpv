@@ -104,7 +104,28 @@ const deleteCard = (multiverseid, callback) => {
   });
 };
 
+const searchCardsByColorIdentity = (identities, colorless, callback) => {
+  if(colorless === true) {
+    Card.aggregate().match({colors: []}).exec((err, data) => {
+      if (err) {
+        callback(err, null);
+      } else {
+        callback(null, data);
+      }
+    });
+  } else {
+    Card.aggregate().match({colorIdentity: {$in: identities}}).exec((err, data) => {
+      if (err) {
+        callback(err, null);
+      } else {
+        callback(null, data);
+      }
+    })
+  }
+}
+
 module.exports = {
   addCard,
-  deleteCard
+  deleteCard,
+  searchCardsByColorIdentity
 }

@@ -42,6 +42,19 @@ app.delete('/deleteCard', (req, res) => {
   })
 });
 
+app.get('/searchCardsByColorIdentity/:identities/:colorless', (req, res) => {
+  const colorless = req.params.colorless === 'true' ? true:false;
+  const identities = req.params.identities.split('');
+  db.searchCardsByColorIdentity(identities, colorless, (err, data) => {
+    if(err) {
+      console.log(err);
+      res.status(400).end()
+    } else {
+      res.send(data);
+    }
+  })
+})
+
 app.listen(port, (error) => {
   if (error) console.log(error);
   console.log(`Listening to port ${port}`);

@@ -46,7 +46,7 @@ const MyAppBar = (props) => {
         <Grid item xs={5}>
           <ButtonGroup variant='text' color='inherit' className={classes.buttonGroup}>
             <Button onClick={props.addCardButton}><Typography variant='h6'>Add Card</Typography></Button>
-            <Button><Typography variant='h6'>Search Cards</Typography></Button>
+            <Button onClick={props.searchCardsButton}><Typography variant='h6'>Search Cards</Typography></Button>
             <Button><Typography variant='h6'>Decks</Typography> </Button>
           </ButtonGroup>
         </Grid>
